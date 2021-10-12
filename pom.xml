@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>me.scolastico</groupId>
-  <artifactId>runner-manaer</artifactId>
+  <artifactId>runner-manager</artifactId>
   <version>dev-snapshot</version>
 
   <properties>
