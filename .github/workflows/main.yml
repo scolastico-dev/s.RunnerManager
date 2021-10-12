@@ -24,8 +24,8 @@ env:
   CI_JAVADOC: false
   CI_DOCS: false
   USERNAME: scolastico-dev
-  REPO: s.Default
-  JAR_NAME: example-jar-with-dependencies.jar
+  REPO: s.RunnerManager
+  JAR_NAME: runner-manager-jar-with-dependencies.jar
 
 jobs:
   prepare:

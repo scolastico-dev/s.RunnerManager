@@ -1,8 +1,8 @@
-package me.scolastico.example.routines.starting;
+package me.scolastico.runner.manager.routines.starting;
 
 import com.github.lalyos.jfiglet.FigletFont;
 import java.util.HashMap;
-import me.scolastico.example.Application;
+import me.scolastico.runner.manager.Application;
 import me.scolastico.tools.console.ConsoleLoadingAnimation;
 import me.scolastico.tools.handler.ErrorHandler;
 import me.scolastico.tools.routine.Routine;
@@ -14,7 +14,8 @@ public class HeaderRoutine implements Routine {
   @Override
   public RoutineAnswer execute(HashMap<String, Object> hashMap) throws Exception {
     try {
-      System.out.println(FigletFont.convertOneLine("Example"));
+      System.out.println(FigletFont.convertOneLine("s.RM"));
+      System.out.println("s.RunnerManager");
       System.out.println("Version: " + Application.getVersion() + " | Commit: " + Application.getBranch() + "/" + Application.getCommit() + " | By: scolastico");
       hashMap.put("startingTime", System.currentTimeMillis());
       AnsiConsole.systemInstall();

@@ -1,18 +1,21 @@
-package me.scolastico.example;
+package me.scolastico.runner.manager;
 
 import java.util.ArrayList;
-import me.scolastico.example.dataholders.Config;
-import me.scolastico.example.routines.starting.ConfigRoutine;
-import me.scolastico.example.routines.starting.DatabaseRoutine;
-import me.scolastico.example.routines.starting.ErrorRoutine;
-import me.scolastico.example.routines.starting.FinishRoutine;
-import me.scolastico.example.routines.starting.HeaderRoutine;
+import me.scolastico.runner.manager.dataholders.Config;
+import me.scolastico.runner.manager.routines.starting.ConfigRoutine;
+import me.scolastico.runner.manager.routines.starting.ErrorRoutine;
+import me.scolastico.runner.manager.routines.starting.FinishRoutine;
+import me.scolastico.runner.manager.routines.starting.HeaderRoutine;
+import me.scolastico.runner.manager.routines.starting.SchedulerRoutine;
+import me.scolastico.runner.manager.routines.starting.SetupRoutine;
+import me.scolastico.runner.manager.routines.starting.ShutdownHookRoutine;
 import me.scolastico.tools.console.ConsoleLoadingAnimation;
 import me.scolastico.tools.handler.ConfigHandler;
 import me.scolastico.tools.handler.ErrorHandler;
 import me.scolastico.tools.routine.Routine;
 import me.scolastico.tools.routine.RoutineManager;
 import me.scolastico.tools.simplified.SimplifiedResourceFileReader;
+import org.apache.commons.lang.RandomStringUtils;
 
 public class Application {
 
@@ -21,6 +24,7 @@ public class Application {
   private final static String version = SimplifiedResourceFileReader.getInstance().getStringFromResources("staticVars/VERSION");
   private final static String branch = SimplifiedResourceFileReader.getInstance().getStringFromResources("staticVars/BRANCH");
   private final static String commit = SimplifiedResourceFileReader.getInstance().getStringFromResources("staticVars/COMMIT");
+  private final static String salt = RandomStringUtils.randomAlphanumeric(8);
 
   public static void main(String[] args) {
     try {
@@ -28,7 +32,9 @@ public class Application {
       routines.add(new ErrorRoutine());
       routines.add(new HeaderRoutine());
       routines.add(new ConfigRoutine());
-      routines.add(new DatabaseRoutine());
+      routines.add(new SetupRoutine());
+      routines.add(new ShutdownHookRoutine());
+      routines.add(new SchedulerRoutine());
       routines.add(new FinishRoutine());
       RoutineManager manager = new RoutineManager(routines);
       manager.startNotAsynchronously();
@@ -38,6 +44,10 @@ public class Application {
       } catch (Exception ignored) {}
       ErrorHandler.handleFatal(e);
     }
+  }
+
+  public static String getSalt() {
+    return salt;
   }
 
   public static String getBranch() {

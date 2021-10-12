@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Annotation profile for example" enabled="true">
+      <profile name="Annotation profile for runner-manaer" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -23,6 +23,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/avaje/composite/junit/1.1/junit-1.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar" />
         </processorPath>
+        <module name="s.RunnerManager" />
         <module name="s.Default" />
       </profile>
     </annotationProcessing>

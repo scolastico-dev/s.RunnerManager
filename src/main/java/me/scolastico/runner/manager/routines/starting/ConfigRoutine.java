@@ -1,8 +1,8 @@
-package me.scolastico.example.routines.starting;
+package me.scolastico.runner.manager.routines.starting;
 
 import java.util.HashMap;
-import me.scolastico.example.Application;
-import me.scolastico.example.dataholders.Config;
+import me.scolastico.runner.manager.Application;
+import me.scolastico.runner.manager.dataholders.Config;
 import me.scolastico.tools.console.ConsoleLoadingAnimation;
 import me.scolastico.tools.ebean.DatabaseConfig;
 import me.scolastico.tools.handler.ConfigHandler;
@@ -17,7 +17,6 @@ public class ConfigRoutine implements Routine {
   public RoutineAnswer execute(HashMap<String, Object> hashMap) throws Exception {
     try {
       boolean configMissing = false;
-      boolean tmpConfigMissing = false;
 
       System.out.print("Loading config... ");
       ConsoleLoadingAnimation.enable();
@@ -25,35 +24,17 @@ public class ConfigRoutine implements Routine {
       if (!configHandler.checkIfExists()) {
         configHandler.saveDefaultConfig();
         configMissing = true;
-        tmpConfigMissing = true;
       }
       Config config = configHandler.loadConfig();
       ConsoleLoadingAnimation.disable();
-      if (tmpConfigMissing) {
+      if (configMissing) {
         System.out.println(Ansi.ansi().fgRed().a("[FAIL]").reset());
-        tmpConfigMissing = false;
       } else {
         System.out.println(Ansi.ansi().fgGreen().a("[OK]").reset());
       }
 
       if (config.isDebug()) {
         configHandler.storeConfig(config);
-      }
-
-      System.out.print("Loading database config... ");
-      ConsoleLoadingAnimation.enable();
-      ConfigHandler<DatabaseConfig> databaseConfigHandler = new ConfigHandler<>(new DatabaseConfig(), "dbConfig.json");
-      if (!databaseConfigHandler.checkIfExists()) {
-        databaseConfigHandler.saveDefaultConfig();
-        configMissing = true;
-        tmpConfigMissing = true;
-      }
-      DatabaseConfig dbConfig = databaseConfigHandler.loadConfig();
-      ConsoleLoadingAnimation.disable();
-      if (tmpConfigMissing) {
-        System.out.println(Ansi.ansi().fgRed().a("[FAIL]").reset());
-      } else {
-        System.out.println(Ansi.ansi().fgGreen().a("[OK]").reset());
       }
 
       if (configMissing) {
@@ -66,7 +47,6 @@ public class ConfigRoutine implements Routine {
       }
       Application.setConfig(config);
       Application.setConfigHandler(configHandler);
-      hashMap.put("dbConfig",dbConfig);
       return new RoutineAnswer(hashMap);
     } catch (Exception e) {
       try {

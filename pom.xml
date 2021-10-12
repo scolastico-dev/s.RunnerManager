@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>me.scolastico</groupId>
-  <artifactId>example</artifactId>
+  <artifactId>runner-manaer</artifactId>
   <version>dev-snapshot</version>
 
   <properties>
@@ -90,7 +90,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
-              <mainClass>com.scolastico.hosting.sHosting</mainClass>
+              <mainClass>me.scolastico.runner.manager.Application</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -117,6 +117,11 @@
       <groupId>com.github.lalyos</groupId>
       <artifactId>jfiglet</artifactId>
       <version>0.0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>2.7.5</version>
     </dependency>
   </dependencies>
 
