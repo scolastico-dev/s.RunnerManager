@@ -22,7 +22,7 @@ on:
 env:
   GENERATE_JAVADOC: false
   CI_JAVADOC: false
-  CI_DOCS: false
+  CI_DOCS: true
   USERNAME: scolastico-dev
   REPO: s.RunnerManager
   JAR_NAME: runner-manager-jar-with-dependencies.jar

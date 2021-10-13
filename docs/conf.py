@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Example'
+project = 's.RunnerManager'
 copyright = '2021, Joschua Becker EDV'
 author = 'Joschua Becker'
 
