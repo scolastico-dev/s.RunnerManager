@@ -56,7 +56,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.scolastico.hosting.sHosting</mainClass>
+              <mainClass>me.scolastico.runner.manager.Application</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
