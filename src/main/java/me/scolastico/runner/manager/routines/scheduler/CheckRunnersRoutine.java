@@ -19,6 +19,16 @@ public class CheckRunnersRoutine implements Routine {
       System.out.println("GitHub response not valid for configuration '" + config.getOrg() + ":" + config.getTag() + "'!");
       return new RoutineAnswer(true, "github response not valid");
     }
+    ArrayList<RunnerData> tmp = new ArrayList<>();
+    for (RunnerData d:data) {
+      RunnerConfiguration c = Database.getLocalRunners().get(d.getName());
+      if (c != null) {
+        if ((config.getOrg() + ":" + config.getTag()).equals(c.getOrg() + ":" + c.getTag())) {
+          tmp.add(d);
+        }
+      }
+    }
+    data = tmp.toArray(new RunnerData[0]);
     objectMap.put("data", data);
     int runners = 0;
     int busyRunners = 0;
@@ -38,7 +48,7 @@ public class CheckRunnersRoutine implements Routine {
     }
     for (String name:Database.getFreshRunners().keySet()) {
       RunnerConfiguration c = Database.getLocalRunners().get(name);
-      if ((config.getTag() + ":" + config.getGroup()).equals(c.getTag() + ":" + config.getGroup())) runners++;
+      if ((config.getOrg() + ":" + config.getTag()).equals(c.getOrg() + ":" + c.getTag())) runners++;
     }
     int free = runners - busyRunners;
     int needed = 0;
@@ -55,7 +65,7 @@ public class CheckRunnersRoutine implements Routine {
       }
     }
     if (needed != 0) {
-      System.out.println("Runner '" + config.getOrg() + ":" + config.getTag() + "' needs " + needed + " more runner(s)...");
+      System.out.println("Configuration '" + config.getOrg() + ":" + config.getTag() + "' needs " + needed + " more runner(s)...");
     }
     objectMap.put("needed", needed);
     objectMap.put("offlineRunners", offlineRunners);

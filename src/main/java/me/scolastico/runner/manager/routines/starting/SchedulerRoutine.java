@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import me.scolastico.runner.manager.Application;
 import me.scolastico.runner.manager.dataholders.RunnerConfiguration;
+import me.scolastico.runner.manager.etc.Database;
 import me.scolastico.runner.manager.routines.scheduler.CheckRunnersRoutine;
 import me.scolastico.runner.manager.routines.scheduler.StartRunnersRoutine;
 import me.scolastico.runner.manager.routines.scheduler.StopRunnersRoutine;
@@ -42,6 +43,7 @@ public class SchedulerRoutine implements Routine {
             manager.startNotAsynchronously(o);
           }
         }));
+        Database.addSchedulerId(id);
         ConsoleLoadingAnimation.disable();
         System.out.println(Ansi.ansi().fgGreen().a("[OK]").reset());
       }
