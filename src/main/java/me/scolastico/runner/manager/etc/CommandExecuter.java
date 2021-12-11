@@ -11,7 +11,6 @@ import java.io.Writer;
 import java.util.ArrayList;
 import me.scolastico.runner.manager.Application;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.jetbrains.annotations.NotNull;
 
 public class CommandExecuter {
 
@@ -39,7 +38,6 @@ public class CommandExecuter {
     }
   }
 
-  @NotNull
   private static String[] getStrings(Process process) throws InterruptedException, IOException {
     process.waitFor();
     BufferedReader buf = new BufferedReader(new InputStreamReader(process.getInputStream()));

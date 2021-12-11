@@ -15,7 +15,7 @@ import me.scolastico.tools.handler.ErrorHandler;
 import me.scolastico.tools.routine.Routine;
 import me.scolastico.tools.routine.RoutineManager;
 import me.scolastico.tools.simplified.SimplifiedResourceFileReader;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class Application {
 
