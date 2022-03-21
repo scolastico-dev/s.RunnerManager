@@ -68,7 +68,8 @@ public class StartRunnersRoutine implements Routine {
                   .replaceAll("%labels%", label)
                   .replaceAll("%cpu%", cpu)
                   .replaceAll("%ram%", ram)
-                  .replaceAll("%swap%", swap);
+                  .replaceAll("%swap%", swap)
+                  .replaceAll("%tag%", config.getTag());
               if (!newCommand.equals("")) commands.add(newCommand);
             }
             StringBuilder commandBuilder = new StringBuilder();
