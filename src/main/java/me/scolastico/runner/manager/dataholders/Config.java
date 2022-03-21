@@ -1,5 +1,7 @@
 package me.scolastico.runner.manager.dataholders;
 
+import java.util.HashMap;
+
 public class Config {
 
   private boolean debug = false;
@@ -12,6 +14,24 @@ public class Config {
   private int containerCPU = -1;
   private int checkEverySeconds = 15;
   private RunnerConfiguration[] runnerConfiguration = new RunnerConfiguration[]{new RunnerConfiguration()};
+  private HashMap<String, CommandConfiguration> commandConfiguration = new HashMap<>(){{put("default", new CommandConfiguration());}};
+  private String stopCommand = "docker rm %runnerName%";
+
+  public String getStopCommand() {
+    return stopCommand;
+  }
+
+  public void setStopCommand(String stopCommand) {
+    this.stopCommand = stopCommand;
+  }
+
+  public HashMap<String, CommandConfiguration> getCommandConfiguration() {
+    return commandConfiguration;
+  }
+
+  public void setCommandConfiguration(HashMap<String, CommandConfiguration> commandConfiguration) {
+    this.commandConfiguration = commandConfiguration;
+  }
 
   public boolean isUseBash() {
     return useBash;

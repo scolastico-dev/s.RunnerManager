@@ -2,6 +2,7 @@ package me.scolastico.runner.manager.routines.scheduler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import me.scolastico.runner.manager.Application;
 import me.scolastico.runner.manager.dataholders.RunnerConfiguration;
 import me.scolastico.runner.manager.dataholders.RunnerData;
 import me.scolastico.runner.manager.etc.CommandExecuter;
@@ -41,7 +42,7 @@ public class StopRunnersRoutine implements Routine {
       GithubAPI.deleteRunner(config, offlineRunnerIds.get(name));
       Thread thread = new Thread(() -> {
         try {
-          CommandExecuter.run("docker rm " + name);
+          CommandExecuter.run(Application.getConfig().getStopCommand().replaceAll("%runnerName%", name));
         } catch (Exception e) {
           ErrorHandler.handle(e);
         }
